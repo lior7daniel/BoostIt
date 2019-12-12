@@ -1,10 +1,12 @@
-package com.example.boostit;
+package com.example.boostit.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.boostit.R;
 
 public class LogIn extends AppCompatActivity {
 
