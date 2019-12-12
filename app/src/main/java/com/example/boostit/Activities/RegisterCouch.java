@@ -109,6 +109,10 @@ public class RegisterCouch extends AppCompatActivity {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     myRef = database.getReference().child("COACHES USERS");
                     myRef.child(myAuth.getCurrentUser().getUid()).setValue(couch);
+
+                    myRef = database.getReference().child("STUDIOS CITIES");
+                    myRef.child(strStudioCity).setValue(myAuth.getCurrentUser().getUid());
+
                     startActivity(new Intent(RegisterCouch.this, LogIn.class));
                     return;
                 }
