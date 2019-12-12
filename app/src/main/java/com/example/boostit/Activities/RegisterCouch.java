@@ -17,13 +17,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterCouch extends AppCompatActivity {
 
-    EditText        txtEmail, txtPassword, txtPassword2, txtFullName, txtPhoneNumber,
-                    txtStudioName, txtStudioCity, txtStudioAddress;
-    Button          btnLetsGo;
-    FirebaseAuth    mAuth;
+    EditText            txtEmail, txtPassword, txtPassword2, txtFullName, txtPhoneNumber,
+                        txtStudioName, txtStudioCity, txtStudioAddress;
+    Button              btnLetsGo;
+    FirebaseAuth        myAuth;
+    DatabaseReference   myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,7 @@ public class RegisterCouch extends AppCompatActivity {
         txtStudioAddress    =   findViewById(R.id.txtStudioAddress);
         btnLetsGo           =   findViewById(R.id.btnLetsGo);
 
-        mAuth               =   FirebaseAuth.getInstance();
+        myAuth               =   FirebaseAuth.getInstance();
 
         btnLetsGo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,13 +100,15 @@ public class RegisterCouch extends AppCompatActivity {
 
     private void CreateUserAccount(final String strEmail,final String strPassword,final String strFullName,final String strPhoneNumber,
                                    final String strStudioName, final String strStudioCity, final String strStudioAddress) {
-        mAuth.createUserWithEmailAndPassword(strEmail, strPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        myAuth.createUserWithEmailAndPassword(strEmail, strPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Coaches account created!", Toast.LENGTH_LONG).show();
                     ObjCouch couch = new ObjCouch(strEmail, strPassword, strFullName, strPhoneNumber, strStudioName, strStudioCity, strStudioAddress);
-//                    FirebaseDatabase.getInstance().getReference().child("Trainee users").child(mAuth.getCurrentUser().getUid()).setValue(couch);
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    myRef = database.getReference().child("COACHES USERS");
+                    myRef.child(myAuth.getCurrentUser().getUid()).setValue(couch);
                     startActivity(new Intent(RegisterCouch.this, LogIn.class));
                     return;
                 }

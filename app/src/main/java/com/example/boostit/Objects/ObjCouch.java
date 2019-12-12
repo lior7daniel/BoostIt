@@ -7,6 +7,8 @@ public class ObjCouch implements Serializable {
     String email, password, fullName, phoneNumber,
             studioName, studioCity, studioAddress;
 
+    public ObjCouch(){}
+
     public ObjCouch(String email, String password, String fullName, String phoneNumber,
                     String studioName, String studioCity, String studioAddress){
         this.email          =   email;

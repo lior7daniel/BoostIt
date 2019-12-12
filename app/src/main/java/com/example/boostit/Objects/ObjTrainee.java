@@ -6,6 +6,8 @@ public class ObjTrainee implements Serializable{
 
     String email, password, fullName, phoneNumber;
 
+    public ObjTrainee(){}
+
     public ObjTrainee(String email, String password, String fullName, String phoneNumber){
         this.email          =   email;
         this.password       =   password;

@@ -1,5 +1,6 @@
 package com.example.boostit.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,18 +17,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterTrainee extends AppCompatActivity {
 
     EditText            txtEmail, txtPassword, txtPassword2, txtFullName, txtPhoneNumber;
     Button              btnLetsGo;
-    FirebaseAuth        mAuth;
+    FirebaseAuth        myAuth;
+    DatabaseReference   myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_trainee);
+
 
         txtEmail        =   findViewById(R.id.txtEmail);
         txtPassword     =   findViewById(R.id.txtPassword);
@@ -36,7 +40,7 @@ public class RegisterTrainee extends AppCompatActivity {
         txtPhoneNumber  =   findViewById(R.id.txtPhoneNumber);
         btnLetsGo       =   findViewById(R.id.btnLetsGo);
 
-        mAuth           =   FirebaseAuth.getInstance();
+        myAuth           =   FirebaseAuth.getInstance();
 
         btnLetsGo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,14 +80,16 @@ public class RegisterTrainee extends AppCompatActivity {
     }
 
     private void CreateUserAccount(final String strEmail,final String strPassword,final String strFullName,final String strPhoneNumber) {
-        mAuth.createUserWithEmailAndPassword(strEmail, strPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        myAuth.createUserWithEmailAndPassword(strEmail, strPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Trainee account created!", Toast.LENGTH_LONG).show();
                     ObjTrainee trainee = new ObjTrainee(strEmail, strPassword, strFullName, strPhoneNumber);
-                    FirebaseDatabase.getInstance().getReference().child("Trainee users").child(mAuth.getCurrentUser().getUid()).setValue(trainee);
-//                    startActivity(new Intent(RegisterTrainee.this, LogIn.class));
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    myRef = database.getReference().child("TRAINEES USERS");
+                    myRef.child(myAuth.getCurrentUser().getUid()).setValue(trainee);
+                    startActivity(new Intent(RegisterTrainee.this, LogIn.class));
                     return;
                 }
                 else{
