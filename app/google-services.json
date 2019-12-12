@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "478224161209",
+    "firebase_url": "https://boostit-a6aa8.firebaseio.com",
+    "project_id": "boostit-a6aa8",
+    "storage_bucket": "boostit-a6aa8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478224161209:android:4921693564d965f2b23e68",
+        "android_client_info": {
+          "package_name": "com.example.boostit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "478224161209-er8rvk9dokgl3oqpm75nvu98juj3em12.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.boostit",
+            "certificate_hash": "1a25009928a09d4a3cfa7061888211670b6f10f7"
+          }
+        },
+        {
+          "client_id": "478224161209-r2elval5lf0ret95bj1ffu6t3gsrf38p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0gb2BYgIoSaIVwfHqMNPaznsC_rDA7v4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478224161209-r2elval5lf0ret95bj1ffu6t3gsrf38p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
