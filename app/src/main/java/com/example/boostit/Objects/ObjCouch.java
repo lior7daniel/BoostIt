@@ -5,17 +5,17 @@ import java.io.Serializable;
 public class ObjCouch implements Serializable {
 
     String email, password, fullName, phoneNumber,
-            studioName, studioCity, studioAdress;
+            studioName, studioCity, studioAddress;
 
     public ObjCouch(String email, String password, String fullName, String phoneNumber,
-                    String studioName, String studioCity, String studioAdress){
+                    String studioName, String studioCity, String studioAddress){
         this.email          =   email;
         this.password       =   password;
         this.fullName       =   fullName;
         this.phoneNumber    =   phoneNumber;
         this.studioName     =   studioName;
         this.studioCity     =   studioCity;
-        studioAdress        =   studioAdress;
+        this.studioAddress  =   studioAddress;
     }
 
     public String getEmail() {
@@ -66,11 +66,11 @@ public class ObjCouch implements Serializable {
         this.studioCity = studioCity;
     }
 
-    public String getStudioAdress() {
-        return studioAdress;
+    public String getStudioAddress() {
+        return studioAddress;
     }
 
-    public void setStudioAdress(String studioAdress) {
-        this.studioAdress = studioAdress;
+    public void setStudioAddress(String studioAdress) {
+        this.studioAddress = studioAdress;
     }
 }

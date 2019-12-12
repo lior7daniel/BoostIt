@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.boostit.Objects.ObjTrainee;
+import com.example.boostit.Objects.ObjCouch;
 import com.example.boostit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -101,8 +101,8 @@ public class RegisterCouch extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Couch account created!", Toast.LENGTH_LONG).show();
-                    ObjTrainee couch = new ObjTrainee(strEmail, strPassword, strFullName, strPhoneNumber);
+                    Toast.makeText(getApplicationContext(), "Coaches account created!", Toast.LENGTH_LONG).show();
+                    ObjCouch couch = new ObjCouch(strEmail, strPassword, strFullName, strPhoneNumber, strStudioName, strStudioCity, strStudioAddress);
 //                    FirebaseDatabase.getInstance().getReference().child("Trainee users").child(mAuth.getCurrentUser().getUid()).setValue(couch);
                     startActivity(new Intent(RegisterCouch.this, LogIn.class));
                     return;
