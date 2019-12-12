@@ -20,8 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterTrainee extends AppCompatActivity {
 
-    EditText txtEmail, txtPassword, txtPassword2, txtFullName, txtPhoneNumber;
-    Button btnLetsGo;
+    EditText        txtEmail, txtPassword, txtPassword2, txtFullName, txtPhoneNumber;
+    Button          btnLetsGo;
     FirebaseAuth    mAuth;
 
     @Override
