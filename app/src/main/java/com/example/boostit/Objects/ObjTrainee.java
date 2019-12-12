@@ -1,6 +1,8 @@
 package com.example.boostit.Objects;
 
-public class ObjTrainee {
+import java.io.Serializable;
+
+public class ObjTrainee implements Serializable{
 
     String email, password, fullName, phoneNumber;
 

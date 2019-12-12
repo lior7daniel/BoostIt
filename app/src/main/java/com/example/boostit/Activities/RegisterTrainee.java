@@ -1,9 +1,5 @@
 package com.example.boostit.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,18 +7,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.boostit.Objects.ObjTrainee;
 import com.example.boostit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterTrainee extends AppCompatActivity {
 
-    EditText        txtEmail, txtPassword, txtPassword2, txtFullName, txtPhoneNumber;
-    Button          btnLetsGo;
-    FirebaseAuth    mAuth;
+    EditText            txtEmail, txtPassword, txtPassword2, txtFullName, txtPhoneNumber;
+    Button              btnLetsGo;
+    FirebaseAuth        mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,8 @@ public class RegisterTrainee extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Trainee account created!", Toast.LENGTH_LONG).show();
                     ObjTrainee trainee = new ObjTrainee(strEmail, strPassword, strFullName, strPhoneNumber);
-                    startActivity(new Intent(RegisterTrainee.this, LogIn.class));
+                    FirebaseDatabase.getInstance().getReference().child("Trainee users").child(mAuth.getCurrentUser().getUid()).setValue(trainee);
+//                    startActivity(new Intent(RegisterTrainee.this, LogIn.class));
                     return;
                 }
                 else{

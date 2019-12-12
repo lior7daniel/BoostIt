@@ -1,8 +1,5 @@
 package com.example.boostit.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.boostit.Objects.ObjTrainee;
 import com.example.boostit.R;
@@ -102,7 +102,8 @@ public class RegisterCouch extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Couch account created!", Toast.LENGTH_LONG).show();
-                    ObjTrainee trainee = new ObjTrainee(strEmail, strPassword, strFullName, strPhoneNumber);
+                    ObjTrainee couch = new ObjTrainee(strEmail, strPassword, strFullName, strPhoneNumber);
+//                    FirebaseDatabase.getInstance().getReference().child("Trainee users").child(mAuth.getCurrentUser().getUid()).setValue(couch);
                     startActivity(new Intent(RegisterCouch.this, LogIn.class));
                     return;
                 }

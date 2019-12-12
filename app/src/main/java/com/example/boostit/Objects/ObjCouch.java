@@ -1,6 +1,8 @@
 package com.example.boostit.Objects;
 
-public class ObjCouch {
+import java.io.Serializable;
+
+public class ObjCouch implements Serializable {
 
     String email, password, fullName, phoneNumber,
             studioName, studioCity, studioAdress;
