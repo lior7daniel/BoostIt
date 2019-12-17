@@ -83,15 +83,15 @@ public class NewWorkout extends AppCompatActivity {
 
 
 
-                createWorkout(strDate, strBegTime, strEndTime, strCategory, strLimit, strDescription);
+                createWorkout(strCategory, strDate, strBegTime, strEndTime, strDescription, strLimit);
 
             }
         });
 
     }
 
-    public void createWorkout(String strDate, String strBegTime, String strEndTime, String strCategory, String strLimit, String strDescription){
-        ObjWorkout workout = new ObjWorkout(strDate, strBegTime, strEndTime, strCategory, strLimit, strDescription);
+    public void createWorkout(String strCategory, String strDate, String strBegTime, String strEndTime, String strDescription, String strLimit){
+        ObjWorkout workout = new ObjWorkout(strCategory, strDate, strBegTime, strEndTime, strDescription, strLimit);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference().child("WORKOUTS");
         myRef.child(myAuth.getCurrentUser().getUid()).child(String.valueOf(workoutNumber++)).setValue(workout);

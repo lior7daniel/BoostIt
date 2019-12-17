@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -29,7 +30,6 @@ public class  LogIn extends AppCompatActivity {
     FirebaseAuth.AuthStateListener  myAuthStateListener;
     DatabaseReference               myRef;
     FirebaseDatabase                database;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

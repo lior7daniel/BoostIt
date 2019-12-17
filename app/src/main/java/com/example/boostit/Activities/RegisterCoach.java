@@ -111,7 +111,7 @@ public class RegisterCoach extends AppCompatActivity {
                     myRef = database.getReference().child("COACHES USERS");
                     myRef.child(myAuth.getCurrentUser().getUid()).setValue(coach);
                     myRef = database.getReference().child("CITIES");
-                    myRef.child(strStudioCity).child(myAuth.getCurrentUser().getUid()).setValue(myAuth.getCurrentUser().getUid());
+                    myRef.child(strStudioCity).child(myAuth.getCurrentUser().getUid()).setValue(strFullName);
                     startActivity(new Intent(RegisterCoach.this, LogIn.class));
                     return;
                 }
