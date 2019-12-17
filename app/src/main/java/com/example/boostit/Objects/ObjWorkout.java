@@ -4,34 +4,23 @@ import java.io.Serializable;
 
 public class ObjWorkout implements Serializable {
 
-    String amir = "";
-    String  woName;
     String  woCategory;
     String  woDate;
     String  woTimeBegin;
     String  woTimeEnd;
     String  woDescription;
-    int     limitOfTrainees;
+    String  limitOfTrainees;
 
     public ObjWorkout(){}
 
-    public ObjWorkout(String woName, String woCategory, String woDate, String woTimeBegin,
-                      String woTimeEnd, String woDescription, int limitOfTrainees){
-        this.woName             =   woName;
+    public ObjWorkout(String woCategory, String woDate, String woTimeBegin,
+                      String woTimeEnd, String woDescription, String limitOfTrainees){
         this.woCategory         =   woCategory;
         this.woDate             =   woDate;
         this.woTimeBegin        =   woTimeBegin;
         this.woTimeEnd          =   woTimeEnd;
         this.woDescription      =   woDescription;
         this.limitOfTrainees    =   limitOfTrainees;
-    }
-
-    public String getWoName() {
-        return woName;
-    }
-
-    public void setWoName(String woName) {
-        this.woName = woName;
     }
 
     public String getWoCategory() {
@@ -74,11 +63,11 @@ public class ObjWorkout implements Serializable {
         this.woDescription = woDescription;
     }
 
-    public int getLimitOfTrainees() {
+    public String getLimitOfTrainees() {
         return limitOfTrainees;
     }
 
-    public void setLimitOfTrainees(int limitOfTrainees) {
+    public void setLimitOfTrainees(String limitOfTrainees) {
         this.limitOfTrainees = limitOfTrainees;
     }
 }
