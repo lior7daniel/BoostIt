@@ -9,12 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.CoachAccount"></activity>
+        <activity android:name=".Activities.ChooseWorkout"></activity>
+        <activity android:name=".Activities.TraineeAccount" />
+        <activity android:name=".Activities.CoachAccount" />
         <activity android:name=".Activities.NewWorkout" />
         <activity android:name=".Activities.HomeTrainee" />
         <activity android:name=".Activities.HomeCoach" />
         <activity android:name=".Activities.RegisterTrainee" />
-        <activity android:name=".Activities.RegisterCouch" />
+        <activity android:name=".Activities.RegisterCoach" />
         <activity android:name=".Activities.LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

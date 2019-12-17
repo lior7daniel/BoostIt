@@ -47,18 +47,18 @@ public class  LogIn extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser myFireBaseUser = myAuth.getCurrentUser();
                 if( myFireBaseUser != null ){
-                    Toast.makeText(getApplicationContext(),"You are logged in",Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(),"You are logged in",Toast.LENGTH_LONG).show();
                     uId =   myAuth.getCurrentUser().getUid();
                     myRef = database.getReference("COACHES USERS");
                     myRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if(dataSnapshot.hasChild(uId)){
-                                Toast.makeText(getApplicationContext(),"YOU ARE COACH", Toast.LENGTH_LONG);
+                                Toast.makeText(getApplicationContext(),"YOU ARE COACH", Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(getApplicationContext(), HomeCoach.class));
                             }
                             else{
-                                Toast.makeText(getApplicationContext(),"YOU ARE TRAINEE", Toast.LENGTH_LONG);
+                                Toast.makeText(getApplicationContext(),"YOU ARE TRAINEE", Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(getApplicationContext(), HomeTrainee.class));
                             }
                         }
@@ -69,7 +69,7 @@ public class  LogIn extends AppCompatActivity {
                         }
                     });                }
                 else {
-                    Toast.makeText(getApplicationContext(),"Please log in",Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(),"Please log in",Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -107,12 +107,11 @@ public class  LogIn extends AppCompatActivity {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if(dataSnapshot.hasChild(uId)){
-                                            Toast.makeText(getApplicationContext(),"YOU ARE COACH", Toast.LENGTH_LONG);
+                                            Toast.makeText(getApplicationContext(),"YOU ARE COACH", Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(getApplicationContext(), HomeCoach.class));
                                         }
                                         else{
-                                            Toast.makeText(getApplicationContext(),"YOU ARE TRAINEE", Toast.LENGTH_LONG);
-
+                                            Toast.makeText(getApplicationContext(),"YOU ARE TRAINEE", Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(getApplicationContext(), HomeTrainee.class));
                                         }
                                     }
@@ -130,11 +129,11 @@ public class  LogIn extends AppCompatActivity {
         });
 
 
-        findViewById(R.id.btnNewCouch).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnNewCoach).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentNewCouch = new Intent(LogIn.this, RegisterCouch.class);
-                startActivity(intentNewCouch);
+                Intent intentNewCoach = new Intent(LogIn.this, RegisterCoach.class);
+                startActivity(intentNewCoach);
             }
         });
 

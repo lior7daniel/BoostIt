@@ -2,14 +2,14 @@ package com.example.boostit.Objects;
 
 import java.io.Serializable;
 
-public class ObjCouch implements Serializable {
+public class ObjCoach implements Serializable {
 
     String email, password, fullName, phoneNumber,
             studioName, studioCity, studioAddress;
 
-    public ObjCouch(){}
+    public ObjCoach(){}
 
-    public ObjCouch(String email, String password, String fullName, String phoneNumber,
+    public ObjCoach(String email, String password, String fullName, String phoneNumber,
                     String studioName, String studioCity, String studioAddress){
         this.email          =   email;
         this.password       =   password;

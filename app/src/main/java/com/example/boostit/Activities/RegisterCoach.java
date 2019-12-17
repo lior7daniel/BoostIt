@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.boostit.Objects.ObjCouch;
+import com.example.boostit.Objects.ObjCoach;
 import com.example.boostit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,18 +20,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class RegisterCouch extends AppCompatActivity {
+public class RegisterCoach extends AppCompatActivity {
 
     EditText            txtEmail, txtPassword, txtPassword2, txtFullName, txtPhoneNumber,
                         txtStudioName, txtStudioCity, txtStudioAddress;
     Button              btnLetsGo;
     FirebaseAuth        myAuth;
+    FirebaseDatabase    database;
     DatabaseReference   myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_coach);
+        setContentView(R.layout.activity_register_coach);
 
         txtEmail            =   findViewById(R.id.txtEmail);
         txtPassword         =   findViewById(R.id.txtPassword);
@@ -105,11 +106,13 @@ public class RegisterCouch extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Coaches account created!", Toast.LENGTH_LONG).show();
-                    ObjCouch couch = new ObjCouch(strEmail, strPassword, strFullName, strPhoneNumber, strStudioName, strStudioCity, strStudioAddress);
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    ObjCoach coach = new ObjCoach(strEmail, strPassword, strFullName, strPhoneNumber, strStudioName, strStudioCity, strStudioAddress);
+                    database = FirebaseDatabase.getInstance();
                     myRef = database.getReference().child("COACHES USERS");
-                    myRef.child(myAuth.getCurrentUser().getUid()).setValue(couch);
-                    startActivity(new Intent(RegisterCouch.this, LogIn.class));
+                    myRef.child(myAuth.getCurrentUser().getUid()).setValue(coach);
+                    myRef = database.getReference().child("CITIES");
+                    myRef.child(strStudioCity).child(myAuth.getCurrentUser().getUid()).setValue(myAuth.getCurrentUser().getUid());
+                    startActivity(new Intent(RegisterCoach.this, LogIn.class));
                     return;
                 }
                 else{

@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeTrainee extends AppCompatActivity {
 
-    Button btnLogOut;
 //    FirebaseAuth                    fAuth;
 //    FirebaseAuth.AuthStateListener  mAuth;
 
@@ -20,12 +19,18 @@ public class HomeTrainee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_trainee);
-        btnLogOut = findViewById(R.id.btnLogOutTrainee);
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.btnTraineeAccount).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), LogIn.class));
+                startActivity(new Intent(getApplicationContext(), TraineeAccount.class));
+            }
+        });
+
+        findViewById(R.id.btnChooseWorkout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ChooseWorkout.class));
             }
         });
 
