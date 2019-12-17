@@ -4,20 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.HomeTrainee">
+    tools:context=".Activities.HomeCouch">
 
     <Button
-        android:id="@+id/btnLogOutTrainee"
+        android:id="@+id/btnLogOutCoach"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOG OUT TRAINEE"
+        android:text="LOG OUT COACH"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.52" />
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

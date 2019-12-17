@@ -10,18 +10,18 @@ import android.widget.Button;
 import com.example.boostit.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeTrainee extends AppCompatActivity {
+public class HomeCouch extends AppCompatActivity {
 
-    Button btnLogOut;
+    Button                          btnLogOut;
 //    FirebaseAuth                    fAuth;
 //    FirebaseAuth.AuthStateListener  mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_trainee);
+        setContentView(R.layout.activity_home_couch);
 
-        btnLogOut = findViewById(R.id.btnLogOutTrainee);
+        btnLogOut = findViewById(R.id.btnLogOutCoach);
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
