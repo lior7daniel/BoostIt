@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class ObjWorkout implements Serializable {
 
+    String amir = "";
     String  woName;
     String  woCategory;
     String  woDate;
