@@ -55,7 +55,7 @@ public class  LogIn extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if(dataSnapshot.hasChild(uId)){
                                 Toast.makeText(getApplicationContext(),"YOU ARE COACH", Toast.LENGTH_LONG);
-                                startActivity(new Intent(getApplicationContext(), HomeCouch.class));
+                                startActivity(new Intent(getApplicationContext(), HomeCoach.class));
                             }
                             else{
                                 Toast.makeText(getApplicationContext(),"YOU ARE TRAINEE", Toast.LENGTH_LONG);
@@ -108,7 +108,7 @@ public class  LogIn extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if(dataSnapshot.hasChild(uId)){
                                             Toast.makeText(getApplicationContext(),"YOU ARE COACH", Toast.LENGTH_LONG);
-                                            startActivity(new Intent(getApplicationContext(), HomeCouch.class));
+                                            startActivity(new Intent(getApplicationContext(), HomeCoach.class));
                                         }
                                         else{
                                             Toast.makeText(getApplicationContext(),"YOU ARE TRAINEE", Toast.LENGTH_LONG);
