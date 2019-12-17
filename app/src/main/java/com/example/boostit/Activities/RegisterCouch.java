@@ -31,7 +31,7 @@ public class RegisterCouch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_couch);
+        setContentView(R.layout.activity_home_coach);
 
         txtEmail            =   findViewById(R.id.txtEmail);
         txtPassword         =   findViewById(R.id.txtPassword);

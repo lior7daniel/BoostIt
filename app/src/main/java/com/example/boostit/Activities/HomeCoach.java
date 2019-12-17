@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeCoach extends AppCompatActivity {
 
-    Button                          btnLogOut;
 //    FirebaseAuth                    fAuth;
 //    FirebaseAuth.AuthStateListener  mAuth;
 
@@ -21,12 +20,18 @@ public class HomeCoach extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_coach);
 
-        btnLogOut = findViewById(R.id.btnLogOutCoach);
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnLogOutCoach).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(), LogIn.class));
+            }
+        });
+
+        findViewById(R.id.btnNewWorkout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), NewWorkout.class));
             }
         });
 

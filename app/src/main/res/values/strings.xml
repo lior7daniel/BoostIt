@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BoostIt</string>
+    <string name="log_out_coach">LOG OUT COACH</string>
+    <string name="create_new_workout">Create new workout</string>
 </resources>

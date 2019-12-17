@@ -32,7 +32,6 @@ public class RegisterTrainee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_trainee);
 
-
         txtEmail        =   findViewById(R.id.txtEmail);
         txtPassword     =   findViewById(R.id.txtPassword);
         txtPassword2    =   findViewById(R.id.txtPassword2);

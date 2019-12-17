@@ -20,7 +20,6 @@ public class HomeTrainee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_trainee);
-
         btnLogOut = findViewById(R.id.btnLogOutTrainee);
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
