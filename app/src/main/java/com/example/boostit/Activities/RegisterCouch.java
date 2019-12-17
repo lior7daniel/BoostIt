@@ -61,7 +61,7 @@ public class RegisterCouch extends AppCompatActivity {
                     txtEmail.setError("email is required");
                     return;
                 }
-                if(strPassword.length()<6){
+                if(strPassword.length() < 6){
                     txtPassword.setError("password must be >= 6 characters");
                     return;
                 }
@@ -109,10 +109,6 @@ public class RegisterCouch extends AppCompatActivity {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     myRef = database.getReference().child("COACHES USERS");
                     myRef.child(myAuth.getCurrentUser().getUid()).setValue(couch);
-
-                    myRef = database.getReference().child("STUDIOS CITIES");
-                    myRef.child(strStudioCity).setValue(myAuth.getCurrentUser().getUid());
-
                     startActivity(new Intent(RegisterCouch.this, LogIn.class));
                     return;
                 }
