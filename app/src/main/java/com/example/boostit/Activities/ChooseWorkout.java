@@ -15,9 +15,7 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.boostit.Objects.ObjCoach;
 import com.example.boostit.Objects.ObjWorkout;
 import com.example.boostit.R;
 import com.google.firebase.database.DataSnapshot;
@@ -37,7 +35,7 @@ public class ChooseWorkout extends AppCompatActivity {
     String                  coachUID;
     Button                  btnSelectCity, btnSelectCoach, btnSelectDate, btnSelectTime;
     TextView                txtShowAddress, txtShowDate;
-    Spinner                 spnFindCities, spnFindCoach, spnWorkoutTime;
+    Spinner                 spnSelectCities, spnSelectCoach, spnWorkoutTime;
     ArrayList<String>       citiesList, coachesNamesList, coachesUIDList, woTimeList;
     ArrayAdapter<String>    adapterFindCities, adapterFindCoach, adapterWOTime;
     DatabaseReference       myRef;
@@ -60,8 +58,8 @@ public class ChooseWorkout extends AppCompatActivity {
         btnSelectTime       =   findViewById(R.id.btnSelectTime);
         txtShowAddress      =   findViewById(R.id.txtShowAddress);
         txtShowDate         =   findViewById(R.id.txtShowDate);
-        spnFindCities       =   (Spinner) findViewById(R.id.spnFindCities);
-        spnFindCoach        =   (Spinner) findViewById(R.id.spnFindCoaches);
+        spnSelectCities     =   (Spinner) findViewById(R.id.spnSelectCities);
+        spnSelectCoach      =   (Spinner) findViewById(R.id.spnSelectCoaches);
         spnWorkoutTime      =   (Spinner) findViewById(R.id.spnWorkoutTime);
         citiesList          =   new ArrayList<String>();
         coachesNamesList    =   new ArrayList<String>();
@@ -71,18 +69,18 @@ public class ChooseWorkout extends AppCompatActivity {
         adapterFindCoach    =   new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, coachesNamesList);
         adapterWOTime       =   new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, woTimeList);
 
-        spnFindCities.setAdapter(adapterFindCities);
-        spnFindCoach.setAdapter(adapterFindCoach);
-        spnFindCoach.setAdapter(adapterWOTime);
+        spnSelectCities.setAdapter(adapterFindCities);
+        spnSelectCoach.setAdapter(adapterFindCoach);
+        spnWorkoutTime.setAdapter(adapterWOTime);
 
         database            =   FirebaseDatabase.getInstance();
 
         retrieveCitiesToSpinnerFindCity();
 
-        spnFindCities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spnSelectCities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedCity = spnFindCities.getSelectedItem().toString();
+                String selectedCity = spnSelectCities.getSelectedItem().toString();
                 coachesNamesList.clear();
                 coachesUIDList.clear();
                 myRef = database.getReference("CITIES").child(selectedCity);
@@ -112,14 +110,14 @@ public class ChooseWorkout extends AppCompatActivity {
         btnSelectCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spnFindCities.performClick();
+                spnSelectCities.performClick();
             }
         });
 
-        spnFindCoach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spnSelectCoach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                coachUID = coachesUIDList.get(spnFindCoach.getSelectedItemPosition());
+                coachUID = coachesUIDList.get(spnSelectCoach.getSelectedItemPosition());
             }
 
             @Override
@@ -131,7 +129,7 @@ public class ChooseWorkout extends AppCompatActivity {
         btnSelectCoach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spnFindCoach.performClick();
+                spnSelectCoach.performClick();
             }
         });
 
@@ -158,8 +156,6 @@ public class ChooseWorkout extends AppCompatActivity {
 
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 datePickerDialog.show();
-
-
             }
         });
 
@@ -216,7 +212,7 @@ public class ChooseWorkout extends AppCompatActivity {
 
     public void retrieveTimeToSpinnerWOTimeByCoachAndDate(){
         woTimeList.clear();
-        myRef = database.getReference("WORKOUTS").child(coachUID).child("Year: " + year).child("Month: " + month).child("Day: " + day);
+        myRef = database.getReference("WORKOUTS").child(coachUID).child("Year: " + String.valueOf(year)).child("Month: " + String.valueOf(month)).child("Day: " + String.valueOf(day));
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

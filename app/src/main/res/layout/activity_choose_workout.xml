@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.001" />
 
     <Spinner
-        android:id="@+id/spnFindCities"
+        android:id="@+id/spnSelectCities"
         android:layout_width="244dp"
         android:layout_height="34dp"
         android:layout_marginStart="16dp"
@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
-        android:id="@+id/spnFindCoaches"
+        android:id="@+id/spnSelectCoaches"
         android:layout_width="244dp"
         android:layout_height="34dp"
         android:layout_marginStart="16dp"
@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btnSelectCoach"
-        app:layout_constraintTop_toBottomOf="@+id/spnFindCities"
+        app:layout_constraintTop_toBottomOf="@+id/spnSelectCities"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -134,7 +134,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtEmptyStudioAdress"
-        app:layout_constraintTop_toBottomOf="@+id/spnFindCoaches"
+        app:layout_constraintTop_toBottomOf="@+id/spnSelectCoaches"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
