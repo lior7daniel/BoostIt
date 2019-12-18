@@ -1,59 +1,157 @@
 package com.example.boostit.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.WorkSource;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.boostit.Objects.ObjWorkout;
 import com.example.boostit.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class NewWorkout extends AppCompatActivity {
 
-    Button      btnCreateWorkout;
-    EditText    txtDate, txtBegTime, txtEndTime, txtCategory, txtLimit, txtDescription;
+    static int workoutNumber = 1;
+
+    int                     minute, hour, day, month, year;
+
+    Calendar                cal;
+    Spinner                 spnCategory;
+    Button                  btnDate, btnBeginTime, btnEndTime, btnCreateWorkout, btnCategory, btnTraineesLimit;
+    TextView                txtDate, txtBeginTime, txtEndTime;
+    EditText                txtDescription, txtTraineesLimit;
+    ArrayList<String>       categoryList;
+    ArrayAdapter<String>    adapterCategory;
+
     FirebaseAuth myAuth;
     FirebaseDatabase database;
     DatabaseReference myRef;
-    static int workoutNumber = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_workout);
 
-        btnCreateWorkout    =   findViewById(R.id.btnCreateWorkout);
-        txtDate             =   findViewById(R.id.txtDate);
-        txtBegTime          =   findViewById(R.id.txtBeginningTime);
-        txtEndTime          =   findViewById(R.id.txtEndingTime);
-        txtCategory         =   findViewById(R.id.txtCategory);
-        txtLimit            =   findViewById(R.id.txtLimit);
-        txtDescription      =   findViewById(R.id.txtDescription);
+        minute = hour = day = month = year = 0;
 
-        myAuth               =   FirebaseAuth.getInstance();
+        cal                 =   Calendar.getInstance();
+        spnCategory         =   findViewById(R.id.spnCategory);
+        btnDate             =   findViewById(R.id.btnDate);
+        btnBeginTime        =   findViewById(R.id.btnBeginTime);
+        btnEndTime          =   findViewById(R.id.btnEndTime);
+        btnCategory         =   findViewById(R.id.btnCategory);
+        btnTraineesLimit    =   findViewById(R.id.btnTraineesLimit);
+        txtDate             =   findViewById(R.id.txtShowDate);
+        txtBeginTime        =   findViewById(R.id.txtBeginTime);
+        txtEndTime          =   findViewById(R.id.txtEndingTime);
+        txtTraineesLimit    =   findViewById(R.id.txtTraineesLimit);
+        txtDescription      =   findViewById(R.id.txtDescription);
+        btnCreateWorkout    =   findViewById(R.id.btnCreateWorkout);
+
+        categoryList        =   new ArrayList<String>();
+        fillCategoryList();
+        adapterCategory     =   new ArrayAdapter<String>(NewWorkout.this, android.R.layout.simple_spinner_dropdown_item, categoryList);
+        spnCategory.setAdapter(adapterCategory);
+
+        myAuth              =   FirebaseAuth.getInstance();
+
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatePickerDialog datePickerDialog =   new DatePickerDialog(
+                        NewWorkout.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                setDay(dayOfMonth);
+                                setMonth(month);
+                                setYear(year);
+                                txtDate.setText(dayOfMonth + "/" + month + "/" + year);
+                            }
+                        },
+                        cal.get(Calendar.YEAR),
+                        cal.get(Calendar.MONTH),
+                        cal.get(Calendar.DAY_OF_MONTH));
+
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        btnBeginTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        NewWorkout.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                setHour(hourOfDay);
+                                setMinute(minute);
+                                txtBeginTime.setText(hourOfDay + ":" + minute);
+                            }
+                        },
+                        cal.get(Calendar.HOUR),
+                        cal.get(Calendar.MINUTE),
+                        false);
+                timePickerDialog.show();
+            }
+        });
+
+        btnEndTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        NewWorkout.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                txtEndTime.setText(hourOfDay + ":" + minute);
+                            }
+                        },
+                        cal.get(Calendar.HOUR),
+                        cal.get(Calendar.MINUTE),
+                        android.text.format.DateFormat.is24HourFormat(NewWorkout.this));
+                timePickerDialog.show();
+            }
+        });
+
+        btnCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spnCategory.performClick();
+            }
+        });
 
         btnCreateWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String  strDate         =   txtDate.getText().toString();
-                String  strBegTime      =   txtBegTime.getText().toString();
+                String  strBegTime      =   txtBeginTime.getText().toString();
                 String  strEndTime      =   txtEndTime.getText().toString();
-                String  strCategory     =   txtCategory.getText().toString();
-                String  strLimit        =   txtLimit.getText().toString();
+                String  strCategory     =   spnCategory.getSelectedItem().toString();
+                String  strLimit        =   txtTraineesLimit.getText().toString();
                 String  strDescription  =   txtDescription.getText().toString();
 
                 if(strDate.isEmpty()){
@@ -61,43 +159,66 @@ public class NewWorkout extends AppCompatActivity {
                     return;
                 }
                 if(strBegTime.isEmpty()){
-                    txtBegTime.setError("Beginning time is required");
+                    txtBeginTime.setError("Beginning time is required");
                     return;
                 }
                 if(strEndTime.isEmpty()){
                     txtEndTime.setError("Ending time is required");
                     return;
                 }
-                if(strCategory.isEmpty()){
-                    txtCategory.setError("Category is required");
-                    return;
-                }
                 if(strLimit.isEmpty()){
-                    txtLimit.setError("Limit number of trainees is required");
+                    txtTraineesLimit.setError("Limit number of trainees is required");
                     return;
                 }
                 if(strDescription.isEmpty()){
                     txtDescription.setError("Description is required");
                     return;
                 }
-
-
-
                 createWorkout(strCategory, strDate, strBegTime, strEndTime, strDescription, strLimit);
-
             }
         });
-
     }
 
     public void createWorkout(String strCategory, String strDate, String strBegTime, String strEndTime, String strDescription, String strLimit){
         ObjWorkout workout = new ObjWorkout(strCategory, strDate, strBegTime, strEndTime, strDescription, strLimit);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference().child("WORKOUTS");
-        myRef.child(myAuth.getCurrentUser().getUid()).child(String.valueOf(workoutNumber++)).setValue(workout);
-        startActivity(new Intent(getApplicationContext(), HomeCoach.class));
+        myRef.child(myAuth.getCurrentUser().getUid()).child(String.valueOf("Year: " + year)).child(String.valueOf("Month: " + month)).child(String.valueOf("Day: " + day)).child(String.valueOf(hour) + ":" + String.valueOf(minute)).setValue(workout);
         Toast.makeText(getApplicationContext(), "Workout created!", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), HomeCoach.class));
     }
 
+    public void fillCategoryList(){
+        categoryList.add("פיתוח ועיצוב הגוף");
+        categoryList.add("TRX");
+        categoryList.add("סיבולת לב ריאה");
+        categoryList.add("גמישות");
+        categoryList.add("כח שריר");
+        categoryList.add("סיבולת שריר");
+        categoryList.add("זריזות");
+        categoryList.add("קואורדינציה");
+        categoryList.add("מהירות תגובה");
+        categoryList.add("מהירות");
+        categoryList.add("שיווי משקל");
+    }
 
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 }

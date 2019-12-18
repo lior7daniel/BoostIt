@@ -72,7 +72,7 @@ public class ObjCoach implements Serializable {
         return studioAddress;
     }
 
-    public void setStudioAddress(String studioAdress) {
-        this.studioAddress = studioAdress;
+    public void setStudioAddress(String studioAddress) {
+        this.studioAddress = studioAddress;
     }
 }
