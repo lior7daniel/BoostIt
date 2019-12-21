@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class  LogIn extends AppCompatActivity {
-
+    int amir = 100;
     String                          uId;
     FirebaseAuth                    myAuth;
     EditText                        txtEmail, txtPassword;
