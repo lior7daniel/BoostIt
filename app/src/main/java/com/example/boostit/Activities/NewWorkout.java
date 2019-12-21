@@ -41,9 +41,9 @@ public class NewWorkout extends AppCompatActivity {
     ArrayList<String>       categoryList;
     ArrayAdapter<String>    adapterCategory;
 
-    FirebaseAuth myAuth;
-    FirebaseDatabase database;
-    DatabaseReference myRef;
+    FirebaseAuth            myAuth;
+    FirebaseDatabase        database;
+    DatabaseReference       myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +84,7 @@ public class NewWorkout extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                                 setDay(dayOfMonth);
-                                setMonth(month);
+                                setMonth(++month);
                                 setYear(year);
                                 txtDate.setText(dayOfMonth + "/" + month + "/" + year);
                             }
@@ -174,18 +174,19 @@ public class NewWorkout extends AppCompatActivity {
                     txtDescription.setError("Description is required");
                     return;
                 }
-                createWorkout(strCategory, strDate, strBegTime, strEndTime, strDescription, strLimit);
+                createWorkout(strDate, strBegTime, strEndTime, strCategory, strLimit, strDescription);
             }
         });
     }
 
-    public void createWorkout(String strCategory, String strDate, String strBegTime, String strEndTime, String strDescription, String strLimit){
-        ObjWorkout workout = new ObjWorkout(strCategory, strDate, strBegTime, strEndTime, strDescription, strLimit);
+    public void createWorkout(String strDate, String strBegTime, String strEndTime, String strCategory, String strLimit, String strDescription){
+        ObjWorkout workout = new ObjWorkout(strDate, strBegTime, strEndTime, strCategory, strLimit, strDescription);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference().child("WORKOUTS");
-        myRef.child(myAuth.getCurrentUser().getUid()).child(String.valueOf("Year: " + year)).child(String.valueOf("Month: " + month)).child(String.valueOf("Day: " + day)).child(String.valueOf(hour) + ":" + String.valueOf(minute)).setValue(workout);
+        myRef.child(myAuth.getCurrentUser().getUid()).child("Y : " + String.valueOf(year) + ", M : " + String.valueOf(month) + ", D : " + String.valueOf(day) +
+                                                            ", Time : " + strBegTime).setValue(workout);
         Toast.makeText(getApplicationContext(), "Workout created!", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(getApplicationContext(), HomeCoach.class));
+        startActivity(new Intent(NewWorkout.this, HomeCoach.class));
     }
 
     public void fillCategoryList(){

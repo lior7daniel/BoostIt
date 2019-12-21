@@ -4,63 +4,72 @@ import java.io.Serializable;
 
 public class ObjWorkout implements Serializable {
 
-    String  woCategory;
-    String  woDate;
-    String  woTimeBegin;
-    String  woTimeEnd;
-    String  woDescription;
+    String  date;
+    String  timeBegin;
+    String  timeEnd;
+    String  category;
+    String  description;
     String  limitOfTrainees;
 
     public ObjWorkout(){}
 
-    public ObjWorkout(String woCategory, String woDate, String woTimeBegin,
-                      String woTimeEnd, String woDescription, String limitOfTrainees){
-        this.woCategory         =   woCategory;
-        this.woDate             =   woDate;
-        this.woTimeBegin        =   woTimeBegin;
-        this.woTimeEnd          =   woTimeEnd;
-        this.woDescription      =   woDescription;
-        this.limitOfTrainees    =   limitOfTrainees;
+    public ObjWorkout(String date, String timeBegin, String timeEnd,
+                      String category, String limitOfTrainees, String description){
+        this.date             =   date;
+        this.timeBegin        =   timeBegin;
+        this.timeEnd          =   timeEnd;
+        this.category         =   category;
+        this.limitOfTrainees  =   limitOfTrainees;
+        this.description      =   description;
     }
 
-    public String getWoCategory() {
-        return woCategory;
+    public ObjWorkout(ObjWorkout other){
+        this.date             =   other.date;
+        this.timeBegin        =   other.timeBegin;
+        this.timeEnd          =   other.timeEnd;
+        this.category         =   other.category;
+        this.limitOfTrainees  =   other.limitOfTrainees;
+        this.description      =   other.description;
     }
 
-    public void setWoCategory(String woCategory) {
-        this.woCategory = woCategory;
+    public String getDate() {
+        return date;
     }
 
-    public String getWoDate() {
-        return woDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setWoDate(String woDate) {
-        this.woDate = woDate;
+    public String getTimeBegin() {
+        return timeBegin;
     }
 
-    public String getWoTimeBegin() {
-        return woTimeBegin;
+    public void setTimeBegin(String timeBegin) {
+        this.timeBegin = timeBegin;
     }
 
-    public void setWoTimeBegin(String woTimeBegin) {
-        this.woTimeBegin = woTimeBegin;
+    public String getTimeEnd() {
+        return timeEnd;
     }
 
-    public String getWoTimeEnd() {
-        return woTimeEnd;
+    public void setTimeEnd(String timeEnd) {
+        this.timeEnd = timeEnd;
     }
 
-    public void setWoTimeEnd(String woTimeEnd) {
-        this.woTimeEnd = woTimeEnd;
+    public String getCategory() {
+        return category;
     }
 
-    public String getWoDescription() {
-        return woDescription;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public void setWoDescription(String woDescription) {
-        this.woDescription = woDescription;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getLimitOfTrainees() {
@@ -69,5 +78,16 @@ public class ObjWorkout implements Serializable {
 
     public void setLimitOfTrainees(String limitOfTrainees) {
         this.limitOfTrainees = limitOfTrainees;
+    }
+
+    public String toString(){
+        String lineSep = System.lineSeparator();
+        return  lineSep +
+                "Date: " + date + lineSep +
+                "Beginning time: " + timeBegin + lineSep +
+                "Ending time: " + timeEnd + lineSep +
+                "Category: " + category + lineSep +
+                "Limit of trainees: " + limitOfTrainees + lineSep +
+                "Description: " + description + lineSep;
     }
 }
