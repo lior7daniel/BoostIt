@@ -58,19 +58,6 @@ public class RegisterCoach extends AppCompatActivity {
                 final String    strStudioCity       =   txtStudioCity.getText().toString();
                 final String    strStudioAddress    =   txtStudioAddress.getText().toString();
 
-                if(TextUtils.isEmpty(strEmail)){
-                    txtEmail.setError("email is required");
-                    return;
-                }
-                if(strPassword.length() < 6){
-                    txtPassword.setError("password must be >= 6 characters");
-                    return;
-                }
-
-                if(!strPassword.equals(strPassword2)){
-                    txtPassword2.setError("password and confirm Password has to be equal");
-                    return;
-                }
                 if(TextUtils.isEmpty(strFullName)){
                     txtFullName.setError("full name is required");
                     return;
@@ -91,6 +78,22 @@ public class RegisterCoach extends AppCompatActivity {
                     txtPhoneNumber.setError("studio address is required");
                     return;
                 }
+                if(TextUtils.isEmpty(strEmail)){
+                    txtEmail.setError("email is required");
+                    return;
+                }
+                if(strPassword.length() < 6){
+                    txtPassword.setError("password must be >= 6 characters");
+                    return;
+                }
+
+                if(!strPassword.equals(strPassword2)){
+                    txtPassword2.setError("password and confirm Password has to be equal");
+                    return;
+                }
+
+
+
 
 
                 CreateUserAccount(strEmail, strPassword, strFullName, strPhoneNumber, strStudioName, strStudioCity, strStudioAddress);
@@ -109,7 +112,7 @@ public class RegisterCoach extends AppCompatActivity {
                     ObjCoach coach = new ObjCoach(strEmail, strPassword, strFullName, strPhoneNumber, strStudioName, strStudioCity, strStudioAddress);
                     database = FirebaseDatabase.getInstance();
                     myRef = database.getReference().child("COACHES USERS");
-                    myRef.child(myAuth.getCurrentUser().getUid()).setValue(coach);
+                    myRef.child(myAuth.getCurrentUser().getUid()).setValue(coach); //add the coach obj to the firebase
                     myRef = database.getReference().child("CITIES");
                     myRef.child(strStudioCity).child(myAuth.getCurrentUser().getUid()).setValue(strFullName);
                     startActivity(new Intent(RegisterCoach.this, LogIn.class));

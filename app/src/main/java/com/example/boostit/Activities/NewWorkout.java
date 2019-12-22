@@ -78,8 +78,7 @@ public class NewWorkout extends AppCompatActivity {
             public void onClick(View v) {
 
                 DatePickerDialog datePickerDialog =   new DatePickerDialog(
-                        NewWorkout.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        NewWorkout.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -117,6 +116,8 @@ public class NewWorkout extends AppCompatActivity {
                 timePickerDialog.show();
             }
         });
+
+        // what is the difrent between  false); and  android.text.format.DateFormat.is24HourFormat(NewWorkout.this));
 
         btnEndTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,11 +182,18 @@ public class NewWorkout extends AppCompatActivity {
 
     public void createWorkout(String strDate, String strBegTime, String strEndTime, String strCategory, String strLimit, String strDescription){
         ObjWorkout workout = new ObjWorkout(strDate, strBegTime, strEndTime, strCategory, strLimit, strDescription);
+        workout.setYear(String.valueOf(year));
+        workout.setMonth(String.valueOf(month));
+        workout.setDay(String.valueOf(month));
+
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference().child("WORKOUTS");
         myRef.child(myAuth.getCurrentUser().getUid()).child("Y : " + String.valueOf(year) + ", M : " + String.valueOf(month) + ", D : " + String.valueOf(day) +
                                                             ", Time : " + strBegTime).setValue(workout);
-        Toast.makeText(getApplicationContext(), "Workout created!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), workout.toString(), Toast.LENGTH_LONG).show();
+
+
+
         startActivity(new Intent(NewWorkout.this, HomeCoach.class));
     }
 
