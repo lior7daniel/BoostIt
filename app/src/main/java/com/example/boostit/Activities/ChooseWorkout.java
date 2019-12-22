@@ -157,8 +157,6 @@ public class ChooseWorkout extends AppCompatActivity {
 
              //input to the city's spinner all the Cities
     public void retrieveCities() {
-        coachesNamesList.clear();
-        coachesUIDList.clear();
         myRef = database.getReference("CITIES");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
