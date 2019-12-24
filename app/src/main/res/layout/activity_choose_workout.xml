@@ -37,7 +37,7 @@
     <Button
         android:id="@+id/btnSelectCity"
         android:layout_width="wrap_content"
-        android:layout_height="34dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
@@ -52,7 +52,7 @@
     <Button
         android:id="@+id/btnSelectCoach"
         android:layout_width="wrap_content"
-        android:layout_height="34dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"

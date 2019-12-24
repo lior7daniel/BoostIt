@@ -26,7 +26,7 @@
     <Button
         android:id="@+id/btnDate"
         android:layout_width="150dp"
-        android:layout_height="34dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
@@ -57,7 +57,7 @@
     <Button
         android:id="@+id/btnBeginTime"
         android:layout_width="150dp"
-        android:layout_height="34dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -88,7 +88,7 @@
     <Button
         android:id="@+id/btnEndTime"
         android:layout_width="150dp"
-        android:layout_height="34dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -119,7 +119,7 @@
     <Button
         android:id="@+id/btnCategory"
         android:layout_width="150dp"
-        android:layout_height="34dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="Category"
@@ -147,7 +147,7 @@
     <Button
         android:id="@+id/btnTraineesLimit"
         android:layout_width="150dp"
-        android:layout_height="34dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -194,7 +194,7 @@
     <EditText
         android:id="@+id/txtTraineesLimit"
         android:layout_width="0dp"
-        android:layout_height="34dp"
+        android:layout_height="39dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
