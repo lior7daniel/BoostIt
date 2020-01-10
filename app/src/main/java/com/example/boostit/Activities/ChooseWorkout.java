@@ -33,7 +33,6 @@ public class ChooseWorkout extends AppCompatActivity {
     String                  timeToBegin;
     int                     day, month, year;
     ListView                myWorkoutListView;
-    Calendar                cal;
     String                  coachUID;
     Button                  btnSelectCity, btnSelectCoach, btnBook;
     TextView                txtShowAddress, txtShowDate;

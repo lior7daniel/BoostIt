@@ -1,12 +1,11 @@
 package com.example.boostit.Objects;
 
 import java.io.Serializable;
-import java.time.Year;
 
 public class ObjWorkout implements Serializable {
 
+    String  woID;
     String  year,month,day;
-
     String  date;
     String  timeBegin;
     String  timeEnd;
@@ -18,12 +17,16 @@ public class ObjWorkout implements Serializable {
 
     public ObjWorkout(String date, String timeBegin, String timeEnd,
                       String category, String limitOfTrainees, String description){
-        this.date             =   date;
-        this.timeBegin        =   timeBegin;
-        this.timeEnd          =   timeEnd;
-        this.category         =   category;
-        this.limitOfTrainees  =   limitOfTrainees;
-        this.description      =   description;
+        this.date               =   date;
+        this.timeBegin          =   timeBegin;
+        this.timeEnd            =   timeEnd;
+        this.category           =   category;
+        this.limitOfTrainees    =   limitOfTrainees;
+        this.description        =   description;
+        this.woID               =   "Y : " + year +
+                                    ", M : " + month +
+                                    ", D : " + day +
+                                    ", Time : " + timeBegin;
     }
 
     public ObjWorkout(ObjWorkout other){
@@ -35,6 +38,13 @@ public class ObjWorkout implements Serializable {
         this.description      =   other.description;
     }
 
+    public String getWoID() {
+        return woID;
+    }
+
+    public void setWoID(String woID) {
+        this.woID = woID;
+    }
 
     public String getYear() { return year; }
 

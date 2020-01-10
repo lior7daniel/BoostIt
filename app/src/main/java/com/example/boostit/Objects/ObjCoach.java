@@ -4,13 +4,15 @@ import java.io.Serializable;
 
 public class ObjCoach implements Serializable {
 
-    String email, password, fullName, phoneNumber,
+    String  cUID, email, password, fullName, phoneNumber,
             studioName, studioCity, studioAddress;
 
     public ObjCoach(){}
 
-    public ObjCoach(String email, String password, String fullName, String phoneNumber,
+    public ObjCoach(String cUID, String email, String password, String fullName, String phoneNumber,
                     String studioName, String studioCity, String studioAddress){
+
+        this.cUID           =   cUID;
         this.email          =   email;
         this.password       =   password;
         this.fullName       =   fullName;
@@ -18,6 +20,14 @@ public class ObjCoach implements Serializable {
         this.studioName     =   studioName;
         this.studioCity     =   studioCity;
         this.studioAddress  =   studioAddress;
+    }
+
+    public String getcUID() {
+        return cUID;
+    }
+
+    public void setcUID(String cUID) {
+        this.cUID = cUID;
     }
 
     public String getEmail() {

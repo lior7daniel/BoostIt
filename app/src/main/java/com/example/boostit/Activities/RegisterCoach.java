@@ -109,7 +109,7 @@ public class RegisterCoach extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Coaches account created!", Toast.LENGTH_LONG).show();
-                    ObjCoach coach = new ObjCoach(strEmail, strPassword, strFullName, strPhoneNumber, strStudioName, strStudioCity, strStudioAddress);
+                    ObjCoach coach = new ObjCoach(myAuth.getCurrentUser().getUid(), strEmail, strPassword, strFullName, strPhoneNumber, strStudioName, strStudioCity, strStudioAddress);
                     database = FirebaseDatabase.getInstance();
                     myRef = database.getReference().child("COACHES USERS");
                     myRef.child(myAuth.getCurrentUser().getUid()).setValue(coach); //add the coach obj to the firebase

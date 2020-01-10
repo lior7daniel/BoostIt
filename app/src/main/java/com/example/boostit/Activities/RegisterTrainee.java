@@ -84,7 +84,7 @@ public class RegisterTrainee extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Trainee account created!", Toast.LENGTH_LONG).show();
-                    ObjTrainee trainee = new ObjTrainee(strEmail, strPassword, strFullName, strPhoneNumber);
+                    ObjTrainee trainee = new ObjTrainee(myAuth.getCurrentUser().getUid(), strEmail, strPassword, strFullName, strPhoneNumber);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     myRef = database.getReference().child("TRAINEES USERS");
                     myRef.child(myAuth.getCurrentUser().getUid()).setValue(trainee);

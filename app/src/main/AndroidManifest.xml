@@ -10,8 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.ChooseWorkout"></activity>
-        <activity android:name=".Activities.TraineeAccount" />
-        <activity android:name=".Activities.CoachAccount" />
         <activity android:name=".Activities.NewWorkout" />
         <activity android:name=".Activities.HomeTrainee" />
         <activity android:name=".Activities.HomeCoach" />

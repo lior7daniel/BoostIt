@@ -189,7 +189,7 @@ public class NewWorkout extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference().child("WORKOUTS");
         myRef.child(myAuth.getCurrentUser().getUid()).child("Y : " + String.valueOf(year) + ", M : " + String.valueOf(month) + ", D : " + String.valueOf(day) +
-                                                            ", Time : " + strBegTime).setValue(workout);
+                ", Time : " + strBegTime).setValue(workout);
         Toast.makeText(getApplicationContext(), workout.toString(), Toast.LENGTH_LONG).show();
 
 

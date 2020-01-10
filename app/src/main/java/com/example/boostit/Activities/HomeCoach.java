@@ -1,29 +1,44 @@
 package com.example.boostit.Activities;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.boostit.R;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeCoach extends AppCompatActivity {
 
-//    FirebaseAuth                    fAuth;
-//    FirebaseAuth.AuthStateListener  mAuth;
+    private DrawerLayout            mDrawerLayout;
+    private ActionBarDrawerToggle   mToggle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_coach);
 
-        findViewById(R.id.btnCoachAccount).setOnClickListener(new View.OnClickListener() {
+        mDrawerLayout   =   (DrawerLayout) findViewById(R.id.home_coach_layout);
+        mToggle         =   new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        findViewById(R.id.btnCoachLogout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), CoachAccount.class));
-            }
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), LogIn.class));            }
         });
 
         findViewById(R.id.btnNewWorkout).setOnClickListener(new View.OnClickListener() {
@@ -34,4 +49,36 @@ public class HomeCoach extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
