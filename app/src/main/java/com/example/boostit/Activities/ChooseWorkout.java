@@ -41,7 +41,7 @@ public class ChooseWorkout extends AppCompatActivity {
     ArrayList<String>       citiesList, coachesNamesList, coachesUIDList;
     ArrayList<ObjWorkout>   workoutsList;
     ArrayAdapter<String>    citiesAdapter, coachesNamesAdapter;
-    ArrayAdapter<ObjWorkout> workoutsAdapter;
+     ArrayAdapter<ObjWorkout> workoutsAdapter;
 
     DatabaseReference       myRef;
     FirebaseAuth            myAuth;
