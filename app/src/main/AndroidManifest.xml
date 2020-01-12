@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.boostit">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -13,10 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ChooseWorkout"></activity>
+        <activity
+            android:name=".Activities.CoachHome"
+            android:label="@string/title_activity_asdasd"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activities.ChooseWorkout" />
         <activity android:name=".Activities.NewWorkout" />
-        <activity android:name=".Activities.HomeTrainee" />
-        <activity android:name=".Activities.HomeCoach" />
         <activity android:name=".Activities.RegisterTrainee" />
         <activity android:name=".Activities.RegisterCoach" />
         <activity android:name=".Activities.LogIn">

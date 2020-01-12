@@ -32,25 +32,21 @@ public class RegisterCoach extends AppCompatActivity {
 
     private static final int CAMERA_REQUEST_CODE = 1;
 
+    String              email;
     EditText            txtEmail, txtPassword, txtPassword2, txtFullName, txtPhoneNumber,
                         txtStudioName, txtStudioCity, txtStudioAddress;
-    Button              btnLetsGo, btnTakePhoto;
+    Button              btnLetsGo;
     FirebaseAuth        myAuth;
     FirebaseDatabase    database;
     DatabaseReference   myRef;
-    StorageReference    myStorageRef;
-
-    ProgressDialog      mProg;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_coach);
 
-        mProg               =   new ProgressDialog(this);
 
-        btnTakePhoto        =   findViewById(R.id.btnTakePhoto);
+
         txtEmail            =   findViewById(R.id.txtEmail);
         txtPassword         =   findViewById(R.id.txtPassword);
         txtPassword2        =   findViewById(R.id.txtPassword2);
@@ -62,19 +58,12 @@ public class RegisterCoach extends AppCompatActivity {
         btnLetsGo           =   findViewById(R.id.btnLetsGo);
 
         myAuth              =   FirebaseAuth.getInstance();
-        myStorageRef        =   FirebaseStorage.getInstance().getReference();
-
-        btnTakePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-               startActivityForResult(intent, CAMERA_REQUEST_CODE);
-            }
-        });
 
         btnLetsGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                email                               =   txtEmail.getText().toString();
                 final String    strEmail            =   txtEmail.getText().toString();
                 final String    strPassword         =   txtPassword.getText().toString();
                 final String    strPassword2        =   txtPassword2.getText().toString();
@@ -118,37 +107,10 @@ public class RegisterCoach extends AppCompatActivity {
                     return;
                 }
 
-
-
-
-
                 CreateUserAccount(strEmail, strPassword, strFullName, strPhoneNumber, strStudioName, strStudioCity, strStudioAddress);
 
             }
         });
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK){
-
-            mProg.setMessage("Uploading...");
-            mProg.show();
-
-            Uri uri = data.getData();
-
-            StorageReference filePath = myStorageRef.child("COACH PHOTOS").child(myAuth.getCurrentUser().getUid()).child(uri.getLastPathSegment());
-
-            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    mProg.dismiss();
-                    Toast.makeText(getApplicationContext(), "Photo has uploaded!", Toast.LENGTH_LONG).show();
-                }
-            });
-
-        }
     }
 
     private void CreateUserAccount(final String strEmail,final String strPassword,final String strFullName,final String strPhoneNumber,

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -54,11 +53,11 @@ public class  LogIn extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if(dataSnapshot.hasChild(uId)){
                                 Toast.makeText(getApplicationContext(),"YOU ARE COACH", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(getApplicationContext(), HomeCoach.class));
+                                startActivity(new Intent(getApplicationContext(), CoachHome.class));
                             }
                             else{
                                 Toast.makeText(getApplicationContext(),"YOU ARE TRAINEE", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(getApplicationContext(), HomeTrainee.class));
+//                                startActivity(new Intent(getApplicationContext(), HomeTrainee.class));
                             }
                         }
 
@@ -107,11 +106,11 @@ public class  LogIn extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if(dataSnapshot.hasChild(uId)){
                                             Toast.makeText(getApplicationContext(),"YOU ARE COACH", Toast.LENGTH_LONG).show();
-                                            startActivity(new Intent(getApplicationContext(), HomeCoach.class));
+                                            startActivity(new Intent(getApplicationContext(), CoachHome.class));
                                         }
                                         else{
                                             Toast.makeText(getApplicationContext(),"YOU ARE TRAINEE", Toast.LENGTH_LONG).show();
-                                            startActivity(new Intent(getApplicationContext(), HomeTrainee.class));
+//                                            startActivity(new Intent(getApplicationContext(), HomeTrainee.class));
                                         }
                                     }
 
@@ -153,24 +152,3 @@ public class  LogIn extends AppCompatActivity {
 }
 
 
-
-
-//uId     =   myAuth.getCurrentUser().getUid();
-//        myRef   =   database.getReference("TRAINEES USERS");
-//
-//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//@Override
-//public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//        if (dataSnapshot.hasChild("uId")){
-//        Toast.makeText(getApplicationContext(),"trainees users",Toast.LENGTH_LONG);
-//        }
-//        else{
-//        Toast.makeText(getApplicationContext(),"coaches users",Toast.LENGTH_LONG);
-//        }
-//        }
-//
-//@Override
-//public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//        }
-//        });

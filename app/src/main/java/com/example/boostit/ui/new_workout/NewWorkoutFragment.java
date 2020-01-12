@@ -1,6 +1,4 @@
-package com.example.boostit.Activities;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.boostit.ui.new_workout;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -8,7 +6,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,6 +18,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.example.boostit.Activities.CoachHome;
+import com.example.boostit.Activities.NewWorkout;
 import com.example.boostit.Objects.ObjWorkout;
 import com.example.boostit.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,48 +35,48 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class NewWorkout extends AppCompatActivity {
-
-    static int workoutNumber = 1;
+public class NewWorkoutFragment extends Fragment {
 
     int                     minute, hour, day, month, year;
 
-    Calendar                cal;
-    Spinner                 spnCategory;
-    Button                  btnDate, btnBeginTime, btnEndTime, btnCreateWorkout, btnCategory, btnTraineesLimit;
+    Calendar cal;
+    Spinner spnCategory;
+    Button btnDate, btnBeginTime, btnEndTime, btnCreateWorkout, btnCategory, btnTraineesLimit;
     TextView                txtDate, txtBeginTime, txtEndTime;
-    EditText                txtDescription, txtTraineesLimit;
-    ArrayList<String>       categoryList;
-    ArrayAdapter<String>    adapterCategory;
+    EditText txtDescription, txtTraineesLimit;
+    ArrayList<String> categoryList;
+    ArrayAdapter<String> adapterCategory;
 
-    FirebaseAuth            myAuth;
+    FirebaseAuth myAuth;
     FirebaseDatabase        database;
-    DatabaseReference       myRef;
+    DatabaseReference myRef;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_workout);
+    private NewWorkoutViewModel newWorkoutViewModel;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.fragment_new_workout, container, false);
 
         minute = hour = day = month = year = 0;
 
         cal                 =   Calendar.getInstance();
-        spnCategory         =   findViewById(R.id.spnCategory);
-        btnDate             =   findViewById(R.id.btnDate);
-        btnBeginTime        =   findViewById(R.id.btnBeginTime);
-        btnEndTime          =   findViewById(R.id.btnEndTime);
-        btnCategory         =   findViewById(R.id.btnCategory);
-        btnTraineesLimit    =   findViewById(R.id.btnTraineesLimit);
-        txtDate             =   findViewById(R.id.txtShowDate);
-        txtBeginTime        =   findViewById(R.id.txtBeginTime);
-        txtEndTime          =   findViewById(R.id.txtEndingTime);
-        txtTraineesLimit    =   findViewById(R.id.txtTraineesLimit);
-        txtDescription      =   findViewById(R.id.txtDescription);
-        btnCreateWorkout    =   findViewById(R.id.btnCreateWorkout);
+        spnCategory         =   root.findViewById(R.id.spnCategory);
+        btnDate             =   root.findViewById(R.id.btnDate);
+        btnBeginTime        =   root.findViewById(R.id.btnBeginTime);
+        btnEndTime          =   root.findViewById(R.id.btnEndTime);
+        btnCategory         =   root.findViewById(R.id.btnCategory);
+        btnTraineesLimit    =   root.findViewById(R.id.btnTraineesLimit);
+        txtDate             =   root.findViewById(R.id.txtShowDate);
+        txtBeginTime        =   root.findViewById(R.id.txtBeginTime);
+        txtEndTime          =   root.findViewById(R.id.txtEndingTime);
+        txtTraineesLimit    =   root.findViewById(R.id.txtTraineesLimit);
+        txtDescription      =   root.findViewById(R.id.txtDescription);
+        btnCreateWorkout    =   root.findViewById(R.id.btnCreateWorkout);
 
         categoryList        =   new ArrayList<String>();
         fillCategoryList();
-        adapterCategory     =   new ArrayAdapter<String>(NewWorkout.this, android.R.layout.simple_spinner_dropdown_item, categoryList);
+        adapterCategory     =   new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, categoryList);
         spnCategory.setAdapter(adapterCategory);
 
         myAuth              =   FirebaseAuth.getInstance();
@@ -78,7 +86,7 @@ public class NewWorkout extends AppCompatActivity {
             public void onClick(View v) {
 
                 DatePickerDialog datePickerDialog =   new DatePickerDialog(
-                        NewWorkout.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        getContext(), android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -101,7 +109,7 @@ public class NewWorkout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(
-                        NewWorkout.this,
+                        getContext(),
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -123,7 +131,7 @@ public class NewWorkout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(
-                        NewWorkout.this,
+                        getContext(),
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -132,7 +140,7 @@ public class NewWorkout extends AppCompatActivity {
                         },
                         cal.get(Calendar.HOUR),
                         cal.get(Calendar.MINUTE),
-                        android.text.format.DateFormat.is24HourFormat(NewWorkout.this));
+                        android.text.format.DateFormat.is24HourFormat(getContext()));
                 timePickerDialog.show();
             }
         });
@@ -178,6 +186,8 @@ public class NewWorkout extends AppCompatActivity {
                 createWorkout(strDate, strBegTime, strEndTime, strCategory, strLimit, strDescription);
             }
         });
+
+        return root;
     }
 
     public void createWorkout(String strDate, String strBegTime, String strEndTime, String strCategory, String strLimit, String strDescription){
@@ -190,11 +200,11 @@ public class NewWorkout extends AppCompatActivity {
         myRef = database.getReference().child("WORKOUTS");
         myRef.child(myAuth.getCurrentUser().getUid()).child("Y : " + String.valueOf(year) + ", M : " + String.valueOf(month) + ", D : " + String.valueOf(day) +
                 ", Time : " + strBegTime).setValue(workout);
-        Toast.makeText(getApplicationContext(), workout.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), workout.toString(), Toast.LENGTH_LONG).show();
 
 
 
-        startActivity(new Intent(NewWorkout.this, CoachHome.class));
+        startActivity(new Intent(getContext(), CoachHome.class));
     }
 
     public void fillCategoryList(){
@@ -230,4 +240,5 @@ public class NewWorkout extends AppCompatActivity {
     public void setYear(int year) {
         this.year = year;
     }
+
 }
