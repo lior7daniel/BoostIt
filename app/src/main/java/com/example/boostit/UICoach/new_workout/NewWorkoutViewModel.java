@@ -1,16 +1,16 @@
-package com.example.boostit.ui.workouts_history;
+package com.example.boostit.UICoach.new_workout;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class WorkoutHistoryViewModel extends ViewModel {
+public class NewWorkoutViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public WorkoutHistoryViewModel() {
+    public NewWorkoutViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is workout history fragment");
+        mText.setValue("This is new workout fragment");
     }
 
     public LiveData<String> getText() {

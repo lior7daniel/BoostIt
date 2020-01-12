@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coach_mobile_navigation"
+    app:startDestination="@+id/nav_coach_my_workouts">
+
+    <fragment
+        android:id="@+id/nav_coach_my_workouts"
+        android:name="com.example.boostit.UICoach.myworkouts.MyWorkoutsFragment"
+        android:label="@string/menu_my_workouts"
+        tools:layout="@layout/fragment_coach_my_workouts" />
+
+    <fragment
+        android:id="@+id/nav_coach_choose_workout"
+        android:name="com.example.boostit.UICoach.new_workout.NewWorkoutFragment"
+        android:label="@string/menu_new_workouot"
+        tools:layout="@layout/fragment_coach_new_workout" />
+
+    <fragment
+        android:id="@+id/nav_coach_workouts_history"
+        android:name="com.example.boostit.UICoach.workouts_history.WorkoutsHistoryFragment"
+        android:label="@string/menu_workouts_history"
+        tools:layout="@layout/fragment_coach_workouts_history" />
+
+    <fragment
+        android:id="@+id/nav_coach_profile"
+        android:name="com.example.boostit.UICoach.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_coach_profile" />
+
+</navigation>

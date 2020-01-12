@@ -1,16 +1,16 @@
-package com.example.boostit.ui.myworkouts;
+package com.example.boostit.UICoach.profile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class MyWorkoutsViewModel extends ViewModel {
+public class ProfileViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public MyWorkoutsViewModel() {
+    public ProfileViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is my workouts fragment");
+        mText.setValue("This is profile fragment");
     }
 
     public LiveData<String> getText() {

@@ -24,9 +24,12 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="menu_my_workouts">My Workouts</string>
-    <string name="menu_new_workout">New Workout</string>
+    <string name="menu_choose_workout">Choose Workout</string>
     <string name="menu_workouts_history">Workouts History</string>
     <string name="messeages">Messages</string>
     <string name="menu_messages">Messages</string>
     <string name="profile">Profile</string>
+    <string name="title_activity_trainee_home">TraineeHome</string>
+    <string name="menu_new_workouot">New Workout</string>
+    <string name="menu_profile">Profile</string>
 </resources>

@@ -5,15 +5,15 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_my_workouts"
+            android:id="@+id/nav_coach_my_workouts"
             android:icon="@drawable/ic_date"
             android:title="@string/menu_my_workouts" />
         <item
-            android:id="@+id/nav_new_workout"
+            android:id="@+id/nav_coach_choose_workout"
             android:icon="@drawable/ic_new"
-            android:title="@string/menu_new_workout" />
+            android:title="@string/menu_choose_workout" />
         <item
-            android:id="@+id/nav_workouts_history"
+            android:id="@+id/nav_coach_workouts_history"
             android:icon="@drawable/ic_history"
             android:title="@string/menu_workouts_history" />
     </group>
@@ -21,11 +21,11 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_profile"
+                android:id="@+id/nav_coach_profile"
                 android:icon="@drawable/ic_account"
                 android:title="@string/profile" />
             <item
-                android:id="@+id/nav_logout"
+                android:id="@+id/nav_coach_logout"
                 android:icon="@drawable/ic_logout"
                 android:title="@string/logout" />
         </menu>
