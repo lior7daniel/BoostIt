@@ -34,10 +34,8 @@ public class CoachHome extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coach_home);
-
         Toolbar toolbar = findViewById(R.id.coach_toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.coach_fab);
@@ -49,32 +47,18 @@ public class CoachHome extends AppCompatActivity {
             }
         });
         DrawerLayout drawer = findViewById(R.id.coach_drawer_layout);
-        myNav = (NavigationView) findViewById(R.id.coach_nav_view);
+        NavigationView navigationView = findViewById(R.id.coach_nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_coach_my_workouts, R.id.nav_coach_choose_workout, R.id.nav_coach_workouts_history,
+                R.id.nav_coach_my_workouts, R.id.nav_coach_new_workout, R.id.nav_coach_workout_history,
                 R.id.nav_coach_profile)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(myNav, navController);
-
-        myNav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                switch (id) {
-                    case R.id.nav_coach_logout:
-                        FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(getApplicationContext(), LogIn.class));
-                        return true;
-                    default:
-                        return true;
-                }
-            }
-        });
+        NavigationUI.setupWithNavController(navigationView, navController);
+        myNav = findViewById(R.id.coach_nav_view);
 
     }
 

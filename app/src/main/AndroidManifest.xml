@@ -3,7 +3,8 @@
     package="com.example.boostit">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".TraineeHome"
-            android:label="@string/title_activity_trainee_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
             android:name=".CoachHome"
-            android:label="@string/title_activity_asdasd"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_coach_home"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Activities.RegisterTrainee" />
         <activity android:name=".Activities.RegisterCoach" />
         <activity android:name=".Activities.LogIn">

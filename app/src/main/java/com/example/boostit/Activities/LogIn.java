@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.boostit.R;
 import com.example.boostit.CoachHome;
-import com.example.boostit.TraineeHome;
+import com.example.boostit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -59,7 +58,7 @@ public class  LogIn extends AppCompatActivity {
                             }
                             else{
                                 Toast.makeText(getApplicationContext(),"YOU ARE TRAINEE", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(getApplicationContext(), TraineeHome.class));
+//                                startActivity(new Intent(getApplicationContext(), TraineeHome.class));
                             }
                         }
 

@@ -32,4 +32,10 @@
     <string name="title_activity_trainee_home">TraineeHome</string>
     <string name="menu_new_workouot">New Workout</string>
     <string name="menu_profile">Profile</string>
+    <string name="title_activity_coach_home">CoachHome</string>
+    <string name="menu_coach_workout_history">Workout History</string>
+    <string name="menu_coach_my_workouts">My Workouts</string>
+    <string name="menu_coach_new_workout">New Workout</string>
+    <string name="menu_coach_profile">Profile</string>
+    <string name="menu_coach_logout">Log out</string>
 </resources>

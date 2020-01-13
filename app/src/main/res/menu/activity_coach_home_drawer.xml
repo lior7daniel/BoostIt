@@ -6,28 +6,31 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_coach_my_workouts"
-            android:icon="@drawable/ic_date"
-            android:title="@string/menu_my_workouts" />
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_coach_my_workouts" />
         <item
-            android:id="@+id/nav_coach_choose_workout"
-            android:icon="@drawable/ic_new"
-            android:title="@string/menu_choose_workout" />
+            android:id="@+id/nav_coach_new_workout"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_coach_new_workout" />
         <item
-            android:id="@+id/nav_coach_workouts_history"
-            android:icon="@drawable/ic_history"
-            android:title="@string/menu_workouts_history" />
+            android:id="@+id/nav_coach_workout_history"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_coach_workout_history" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_coach_profile"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/menu_coach_profile" />
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_coach_profile"
-                android:icon="@drawable/ic_account"
-                android:title="@string/profile" />
-            <item
                 android:id="@+id/nav_coach_logout"
-                android:icon="@drawable/ic_logout"
-                android:title="@string/logout" />
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_coach_logout" />
         </menu>
     </item>
 

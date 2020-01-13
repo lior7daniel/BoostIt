@@ -1,4 +1,4 @@
-package com.example.boostit.UICoach.profile;
+package com.example.boostit.ui.coach_workout_history;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.boostit.R;
 
-public class ProfileFragment extends Fragment {
+public class CoachWorkoutHistoryFragment extends Fragment {
 
-    private ProfileViewModel profileViewModel;
+    private CoachWorkoutHistoryViewModel coachWorkoutHistoryViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        profileViewModel =
-                ViewModelProviders.of(this).get(ProfileViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_coach_profile, container, false);
-        final TextView textView = root.findViewById(R.id.text_profile);
-        profileViewModel.getText().observe(this, new Observer<String>() {
+        coachWorkoutHistoryViewModel =
+                ViewModelProviders.of(this).get(CoachWorkoutHistoryViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_coach_workout_history, container, false);
+        final TextView textView = root.findViewById(R.id.text_coach_workout_history);
+        coachWorkoutHistoryViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

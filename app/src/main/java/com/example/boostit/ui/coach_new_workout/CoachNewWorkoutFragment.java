@@ -1,4 +1,4 @@
-package com.example.boostit.UICoach.new_workout;
+package com.example.boostit.ui.coach_new_workout;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -31,7 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class NewWorkoutFragment extends Fragment {
+public class CoachNewWorkoutFragment extends Fragment {
 
     int                     minute, hour, day, month, year;
 
@@ -47,7 +47,6 @@ public class NewWorkoutFragment extends Fragment {
     FirebaseDatabase        database;
     DatabaseReference myRef;
 
-    private NewWorkoutViewModel newWorkoutViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
